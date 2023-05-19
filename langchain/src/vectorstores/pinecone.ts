@@ -119,7 +119,7 @@ export class PineconeStore extends VectorStore {
       for (const res of results.matches) {
         const { [this.textKey]: pageContent, ...metadata } = (res.metadata ??
           {}) as PineconeMetadata;
-        if (res.score) {
+        if (res.score && res.score > 0.76) {
           result.push([new Document({ metadata, pageContent }), res.score]);
         }
       }
